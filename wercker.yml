@@ -19,7 +19,7 @@ deploy:
         name: install git
         code: |
             apt-get update
-            apt-get install git -y --no-install-recommends
+            apt-get install git ca-certificates -y --no-install-recommends
     - lukevivier/gh-pages:
         token: $GIT_TOKEN
         domain: jrub.in

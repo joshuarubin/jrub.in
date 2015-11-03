@@ -1,11 +1,6 @@
-box: debian
+box: wercker/default
 build:
   steps:
-    - script:
-        name: install git and curl
-        code: |
-            apt-get update
-            apt-get install git curl ca-certificates -y --no-install-recommends
     - script:
         name: initialize git submodules
         code: |

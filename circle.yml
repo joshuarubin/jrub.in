@@ -29,6 +29,7 @@ deployment:
     commands:
       - |
         cd public
+        cp ../circle.yml .
         git init
         git add .
         git config user.name "$GH_PAGES_COMMIT_NAME"

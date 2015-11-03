@@ -1,6 +1,7 @@
 machine:
   environment:
     HUGO_VERSION: "0.14"
+    GH_PAGES_BRANCH: gh-pages
 
 dependencies:
   cache_directories:
@@ -21,4 +22,11 @@ deployment:
   gh_pages:
     branch: master
     commands:
-      - git subtree push --prefix=public git@github.com:joshuarubin/jrub.in.git gh-pages
+      - |
+        cd public
+        git init
+        git add .
+        git config user.name "$GH_PAGES_COMMIT_NAME"
+        git config user.email "$GH_PAGES_COMMIT_EMAIL"
+        git commit -m "deploy using circle from $CIRCLE_USERNAME"
+        git push -f "https://$GH_PAGES_TOKEN@github.com/$GH_PAGES_REPO.git" "master:$GH_PAGES_BRANCH"

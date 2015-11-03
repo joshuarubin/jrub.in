@@ -1,0 +1,42 @@
+general:
+  branches:
+    ignore:
+      - gh-pages
+
+machine:
+  environment:
+    HUGO_VERSION: "0.14"
+    GH_PAGES_BRANCH: gh-pages
+
+dependencies:
+  cache_directories:
+    - ~/bin
+  override:
+    - |
+      if [[ ! -e ~/bin/hugo ]]; then
+        wget https://github.com/spf13/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_linux_amd64.tar.gz
+        tar xzf hugo_${HUGO_VERSION}_linux_amd64.tar.gz
+        cp hugo_${HUGO_VERSION}_linux_amd64/hugo_${HUGO_VERSION}_linux_amd64 ~/bin/hugo
+      fi
+
+checkout:
+  post:
+    - git submodule update --init --recursive
+
+test:
+  override:
+    - hugo --verbose
+
+deployment:
+  gh_pages:
+    branch: master
+    commands:
+      - |
+        cd public
+        cp ../circle.yml .
+        git init
+        git add .
+        git config user.name "$GH_PAGES_COMMIT_NAME"
+        git config user.email "$GH_PAGES_COMMIT_EMAIL"
+        git commit -m "deploy using circle from $CIRCLE_USERNAME"
+        git push -f "https://$GH_PAGES_TOKEN@github.com/$GH_PAGES_REPO.git" "master:$GH_PAGES_BRANCH"

@@ -2,3 +2,10 @@ baseurl = "https://jrub.in/"
 languageCode = "en-us"
 title = "jrub.in"
 theme = "jrub.in"
+
+[params]
+  description = "this is the site description"
+  github = "joshuarubin"
+  facebook = "joshuarubin"
+  twitter = "joshuarubin"
+  googleAnalyticsUserID = "abcd"

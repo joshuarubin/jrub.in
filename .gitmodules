@@ -1,0 +1,3 @@
+[submodule "themes/jrub.in"]
+	path = themes/jrub.in
+	url = https://github.com/joshuarubin/hugo_theme_jrub.in.git

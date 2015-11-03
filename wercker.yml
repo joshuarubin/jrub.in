@@ -1,6 +1,11 @@
-box: wercker/default
+box: debian
 build:
   steps:
+    - script:
+        name: install git and curl
+        code: |
+            apt-get update
+            apt-get install git curl ca-certificates -y --no-install-recommends
     - script:
         name: initialize git submodules
         code: |
@@ -10,6 +15,11 @@ build:
         theme: jrub.in
 deploy:
   steps:
+    - script:
+        name: install git
+        code: |
+            apt-get update
+            apt-get install git -y --no-install-recommends
     - lukevivier/gh-pages:
         token: $GIT_TOKEN
         domain: jrub.in

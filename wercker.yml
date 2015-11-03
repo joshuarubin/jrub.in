@@ -1,0 +1,12 @@
+box: debian
+build:
+  steps:
+    - arjen/hugo-build:
+        version: 0.14
+        theme: jrub.in
+deploy:
+  steps:
+    - lukevivier/gh-pages:
+        token: $GIT_TOKEN
+        domain: jrub.in
+        basedir: public

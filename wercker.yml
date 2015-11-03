@@ -2,10 +2,10 @@ box: debian
 build:
   steps:
     - script:
-        name: install git
+        name: install git and curl
         code: |
             apt-get update
-            apt-get install git -y
+            apt-get install git curl -y --no-install-recommends
     - script:
         name: initialize git submodules
         code: |

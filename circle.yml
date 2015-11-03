@@ -19,6 +19,10 @@ dependencies:
         cp hugo_${HUGO_VERSION}_linux_amd64/hugo_${HUGO_VERSION}_linux_amd64 ~/bin/hugo
       fi
 
+checkout:
+  post:
+    - git submodule update --init --recursive
+
 test:
   override:
     - hugo --verbose
